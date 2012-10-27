@@ -1,11 +1,8 @@
 #!/usr/bin/env ruby
 
 time = Time.now
-day = time.day
-month = time.month
-year = time.year
 
-date = "#{month}-#{day}-#{year}"
+date = time.strftime("%m-%d-%y:%H:%M")
 
 `wget -q -O data/puppet-users-#{date}.txt --user-agent="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6" http://groups.google.com/group/puppet-users/about`
 
