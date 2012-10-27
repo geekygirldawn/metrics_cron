@@ -6,26 +6,32 @@ The project is for scripts that need to run as cron job for the monthly metrics 
 
 Purpose:
 -------
-Get the HTML files for the Google groups pages with the stats and download them, since Google Groups has no F***ing API and they wipe out the top posters for the month on the first day of every month. Grrr.
+Get the HTML files for the Google groups pages with the stats and download them, since
+Google Groups has no F***ing API and they wipe out the top posters for the month on the 
+first day of every month. Grrr.
 
 Running the program:
 -------------------
 
 ruby groups_get.rb [optional directory name as argument]
 
-Takes 1 argument: an existing directory name (no trailing /) where the output will be stored.
+Takes 1 argument: an existing directory name (no trailing /) where the output will be 
+stored.
 
 If no arguments: defaults to data as local directory name. 
 
-Output is one html file for each Google Group specified saved in a file named [group name]-MM-DD-YY:MIN:SEC.txt
+Output is one html file for each Google Group specified saved in a file named 
+[group name]-MM-DD-YY:MIN:SEC.txt
 
 Designed to run as a cron job on the last day of every month.
 
 To Do:
 -----
-* Right now, the group names are hard-coded. These should be pulled from a configuration file.
+* Right now, the group names are hard-coded. These should be pulled from a 
+  configuration file.
 * Need to replace the wget calls with something more Ruby-like.
-* Need to use something like awk to filter and extract the important bits from the html file.
+* Need to use something like awk to filter and extract the important bits from the 
+  html file.
 
 ========== License and Legal ========== 
 
