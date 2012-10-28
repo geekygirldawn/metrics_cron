@@ -23,9 +23,6 @@ else
    abort("Program aborted. Error: Too many arguments. \nTwo optional arguments with a data directory name and config.yaml directory name are permitted")
 end
 
-puts "datadir: #{datadir}"
-puts "configdir: #{configdir}"
-
 # Get current time and format into a nicely readable string down to minutes / seconds.
 
 time = Time.now
