@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby 
 
+require 'yaml'
+
 # Takes 1 argument: an existing directory name (no trailing /) 
 #    where the output will be stored.
 # If no arguments: defaults to data as local directory name.
@@ -21,11 +23,13 @@ date = time.strftime("%m-%d-%y:%H:%M")
 
 # Get the HTML files with the Google Groups data
 
-`wget -q -O #{dir}/puppet-users-#{date}.txt --user-agent="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6" http://groups.google.com/group/puppet-users/about`
+# pull data from config.yaml
 
-`wget -q -O #{dir}/puppet-dev-#{date}.txt --user-agent="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6" http://groups.google.com/group/puppet-dev/about`
+config = YAML::load_file('config.yaml')
 
-`wget -q -O #{dir}/puppet-razor-#{date}.txt --user-agent="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6" http://groups.google.com/group/puppet-razor/about`
-
-
+config.keys.each do |groups|
+  config[groups].each do |lists|
+    `wget -q -O #{dir}/#{lists}-#{date}.txt --user-agent="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6" http://groups.google.com/group/#{lists}/about`
+  end
+end
 

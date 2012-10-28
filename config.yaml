@@ -1,0 +1,5 @@
+---
+groups:
+ - "puppet-users"
+ - "puppet-dev"
+ - "puppet-razor"
