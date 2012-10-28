@@ -20,15 +20,27 @@ stored.
 
 If no arguments: defaults to data as local directory name. 
 
+Reads group names from a YAML config file (see below)
+
 Output is one html file for each Google Group specified saved in a file named 
 [group name]-MM-DD-YY:MIN:SEC.txt
 
 Designed to run as a cron job on the last day of every month.
 
-To Do:
------
-* Right now, the group names are hard-coded. These should be pulled from a 
-  configuration file.
+========== config.yaml ==========
+
+Configuration file where Google Group names are stored. 
+
+An example config.yaml is included using the Google Groups that I normall gather data on.
+
+Format:
+groups:
+ - "puppet-users"
+ - "puppet-dev"
+ - "puppet-razor"
+
+========== To Do ==========
+
 * Need to replace the wget calls with something more Ruby-like.
 * Need to use something like awk to filter and extract the important bits from the 
   html file.
