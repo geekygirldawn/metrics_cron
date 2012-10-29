@@ -44,9 +44,12 @@ groups:
 
 ========== To Do ==========
 
-* Need to replace the wget calls with something more Ruby-like.
 * Need to use something like awk to filter and extract the important bits from the 
   html file.
+* Convert sequential command line arguments to options (-d datadir, -c configfilepath, etc.)
+* Add option to email results (as a command line argument / option -e emailaddress)
+* Need to replace the wget calls with something more Ruby-like.
+* Maybe add a new program to grab the IRC stats?
 
 ========== License and Legal ========== 
 
