@@ -45,7 +45,7 @@ groups:
 ========== To Do ==========
 
 * Need to use something like awk to filter and extract the important bits from the 
-  html file.
+  html file. Look at producing YAML output so that Zach can help me get it into Graphite.
 * Convert sequential command line arguments to options (-d datadir, -c configfilepath, etc.)
 * Add option to email results (as a command line argument / option -e emailaddress)
 * Need to replace the wget calls with something more Ruby-like.
