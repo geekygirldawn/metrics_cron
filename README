@@ -31,7 +31,7 @@ Output For Each Google Group:
   [group name]-MM-DD-YY:MIN:SEC.txt
 * A YAML file with aggregated monthly posts data in a file named
   [group name]-MM-DD-YY:MIN:SEC-monthly.yaml 
-* A YAML file with per user monthly posts in a file named
+* A YAML file with per user posts for top 10 users (all time & monthly) in a file named
   [group name]-MM-DD-YY:MIN:SEC-users.yaml
 * An intermediate file kept only for debugging purposes
   [group name]-MM-DD-YY:MIN:SEC-users.txt
