@@ -25,8 +25,16 @@ Takes 2 arguments:
 
 Reads group names from a YAML config file (see below)
 
-Output is one html file for each Google Group specified saved in a file named 
-[group name]-MM-DD-YY:MIN:SEC.txt
+Output For Each Google Group:
+----------------------------
+* An html file for each Google Group specified saved in a file named 
+  [group name]-MM-DD-YY:MIN:SEC.txt
+* A YAML file with aggregated monthly posts data in a file named
+  [group name]-MM-DD-YY:MIN:SEC-monthly.yaml 
+* A YAML file with per user monthly posts in a file named
+  [group name]-MM-DD-YY:MIN:SEC-users.yaml
+* An intermediate file kept only for debugging purposes
+  [group name]-MM-DD-YY:MIN:SEC-users.txt
 
 Designed to run as a cron job on the last day of every month.
 
@@ -44,8 +52,6 @@ groups:
 
 ========== To Do ==========
 
-* Need to use something like awk to filter and extract the important bits from the 
-  html file. Look at producing YAML output so that Zach can help me get it into Graphite.
 * Convert sequential command line arguments to options (-d datadir, -c configfilepath, etc.)
 * Add option to email results (as a command line argument / option -e emailaddress)
 * Need to replace the wget calls with something more Ruby-like.
