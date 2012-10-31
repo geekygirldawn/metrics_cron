@@ -10,6 +10,8 @@ require 'yaml'
 # Aborts if too many arguments are provided.
 # Note: You will need both of these arguments to run it from cron.
 
+# Read arguments and set variable values based on the arguments.
+
 if ARGV.length == 0
    datadir = "data"
    configdir = "."
@@ -28,15 +30,19 @@ end
 time = Time.now
 
 date = time.strftime("%m-%d-%y:%H:%M")
-monthname = time.strftime("%B")
 
-# Get the HTML files with the Google Groups data
+# Human readable month name for the YAML file later 
+
+monthname = time.strftime("%B")
 
 # pull data from config.yaml
 
 config = YAML::load_file("#{configdir}/config.yaml")
 
+# Get the HTML files with the Google Groups data
+
 # Get files
+
 config.keys.each do |groups|
   config[groups].each do |lists|
     datafile = "#{datadir}/#{lists}-#{date}.txt"
@@ -51,13 +57,14 @@ config.keys.each do |groups|
     mpf.puts "\"Monthly Posts\":"
 
 # Loop through files and pull monthly numbers
+
   File.open(datafile) do |monthly_data| monthly_posts = []
     monthly_data.each do |line|
       if line =~ /browse_frm\/month/
-        line = line.delete "&nbsp;" # get rid of &nbsp;
+        line = line.delete "&nbsp;"                   # get rid of &nbsp;
         month = line[/(19|20)\d\d[-](0[1-9]|1[012])/] # match date
-        posts = line[/\>(\d*)/] # match 1st number after >
-        posts = posts.delete ">" # delete > from string
+        posts = line[/\>(\d*)/]                       # match 1st number after >
+        posts = posts.delete ">"                      # delete > from string
         mpf.puts "  #{month}: \'#{posts}\'"
       end
       
@@ -66,6 +73,7 @@ config.keys.each do |groups|
   }
 
   # Open and initialize text file for user posts intermediate data
+  # This file is only used in the next step
   # This is needed since user posts and name are on 2 separate lines
 
   userpostsfile = "#{datadir}/#{lists}-#{date}-users.txt"
@@ -73,6 +81,7 @@ config.keys.each do |groups|
   open(userpostsfile, 'w') { |upf|
 
   # Loop through files and pull user numbers
+
   File.open(datafile) do |monthly_data| monthly_posts = []
     monthly_data.each do |line|
       
@@ -85,15 +94,17 @@ config.keys.each do |groups|
       end
 
       if line =~ /<td width=1% align="right" nowrap>/
-        userposts = line[/\>(\d*)/] # match 1st number after >
+        userposts = line[/\>(\d*)/]      # match 1st number after > to get num posts
         userposts = userposts.delete ">" # delete > from string    
         upf.print "#{userposts}:"
       end
 
+      # Note that the number of user posts is on the line before the username.
+
       if line =~ /padr5/
-        username = line[/top>(.*)/]
-        username["top>"] = ""
-        username["</a></td>"] = ""
+        username = line[/top>(.*)/] # match everything after /top> for username.
+        username["top>"] = ""       # delete /top> from the beginning of the string
+        username["</a></td>"] = ""  # delete trailing html after username
         upf.puts "#{username}"
       end
     end
@@ -108,6 +119,7 @@ config.keys.each do |groups|
     upyf.puts "---"
 
   # Loop through files and pull user numbers
+
   File.open(userpostsfile) do |monthly_user_data| monthly_user_posts = []
     monthly_user_data.each do |line|
     
@@ -116,8 +128,8 @@ config.keys.each do |groups|
       elsif line =~ /All time/
         upyf.puts "\"All time\":"
       else
-        line = line.split(':')
-        upyf.puts "  #{line.last.chomp}: #{line.first}"
+        line = line.split(':')                          # split the line at : into posts and username
+        upyf.puts "  #{line.last.chomp}: #{line.first}" # reverse order to put username first.
       end
 
     end
