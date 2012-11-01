@@ -65,6 +65,7 @@ groups:
 
 * Convert sequential command line arguments to options (-d datadir, -c configfilepath, etc.)
 * Add option to email results (as a command line argument / option -e emailaddress)
+* Look at putting yaml data through something like Google Chart Tools, etc. to generate charts.
 * Need to replace the wget calls with something more Ruby-like.
 * Maybe add a new program to grab the IRC stats?
 
