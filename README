@@ -9,9 +9,17 @@ but I do welcome constructive feedback on how to make it better.
 
 Purpose:
 -------
-Get the HTML files for the Google groups pages with the stats and download them, since
-Google Groups has no F***ing API and they wipe out the top posters for the month on the 
-first day of every month. Grrr.
+
+Get the HTML files for the Google groups pages with the stats, download them, and parse the
+output, since Google Groups has no F***ing API and they wipe out the top posters for the month 
+on the first day of every month. Grrr.
+
+Caveat:
+------
+
+This is a very brittle script, since it gets the HTML files and uses regular expressions
+parse the output. Even minor changes in the way Google generates the HTML for this page
+will likely cause it to break.
 
 Running the program:
 -------------------
@@ -45,7 +53,7 @@ Designed to run as a cron job on the last day of every month.
 
 Configuration file where Google Group names are stored. 
 
-An example config.yaml is included using the Google Groups that I normall gather data on.
+An example config.yaml is included using the Google Groups that I normally gather data on.
 
 Format:
 groups:
