@@ -2,6 +2,9 @@
 
 The project is for scripts that need to run as cron job for the monthly metrics project.
 
+This is also the first Ruby code that I've ever written from scratch, so go easy on me :)
+but I do welcome constructive feedback on how to make it better.
+
 ========== groups_get.rb ==========
 
 Purpose:
