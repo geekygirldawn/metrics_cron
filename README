@@ -34,6 +34,8 @@ Takes 2 arguments:
   Aborts if too many arguments are provided.
   Note: You will need both of these arguments to run it from cron.
 
+When running from cron, you need to make sure that crontab is using UTF-8, not ASCII encoding.
+
 Reads group names from a YAML config file (see below)
 
 Output For Each Google Group:
