@@ -46,7 +46,7 @@ config = YAML::load_file("#{configdir}/config.yaml")
 config.keys.each do |groups|
   config[groups].each do |lists|
     datafile = "#{datadir}/#{lists}-#{date}.txt"
-    File.new "#{datafile}","w"
+    open(datafile, 'w')
     `wget -q -O #{datafile} --user-agent="Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.6) Gecko/20070725 Firefox/2.0.0.6" http://groups.google.com/group/#{lists}/about`
 
 # Open and initialize YAML file for monthly posts data
