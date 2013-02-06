@@ -2,3 +2,5 @@
 *.html
 *.yaml
 *.yml
+*.tar
+*.gz
