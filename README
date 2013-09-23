@@ -1,3 +1,7 @@
+========== OBSOLETE - DO NOT USE ==========
+
+Google recently made some changes that prevent this method of collecting data. This code no longer produces any useful output. 
+
 ========== Description ==========
 
 The project is for scripts that need to run as cron job for the monthly metrics project.
